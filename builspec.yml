@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+    pre:build:
+      commands:
+        - echo "Enter prebuild phase"
+    build:
+      commands:
+        - echo "Enter build phase"
+    post_build:
+      commands:
+        - echo  "Enter post build phase."
+artifacts:
+  files:
+    - restful-booker/**/*
+
