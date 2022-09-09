@@ -19,9 +19,7 @@ phases:
     commands:
       - echo  "Enter post build phase 02."
 artifacts:
-  base-directory: ./QA-MeetUp-API-Workshop/
   files:
-    - QA-MeetUp-API-Workshop/**/*
     - '**/*'
 reports:
   SurefireReports:
