@@ -9,10 +9,10 @@ phases:
       - npm install
   build:
     commands:
-      - echo "Enter build phase"
+      - echo "Enter build phase 01"
   post_build:
     commands:
-      - echo  "Enter post build phase."
+      - echo  "Enter post build phase 02."
 
 artifacts:
   files:
