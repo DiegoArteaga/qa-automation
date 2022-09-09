@@ -6,14 +6,16 @@ phases:
   pre_build:
     commands:
       - echo "Enter prebuild phase"
-      - npm install
   build:
     commands:
       - echo "Enter build phase 01"
+      - echo $CODEBUILD_SRC_DIR
+      - npm install
   post_build:
     commands:
       - echo  "Enter post build phase 02."
 
 artifacts:
+  base-directory: restul-bookder/
   files:
-    - restful-booker/**/*
+    - '**/*'
