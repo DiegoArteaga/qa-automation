@@ -1,0 +1,23 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+  pre_build:
+    commands:
+      - echo "Enter prebuild phase"
+  build:
+    commands:
+      - echo "Enter build phase test"
+      - echo $CODEBUILD_SRC_DIR
+      - cd $CODEBUILD_SRC_DIR/QA-MeetUp-API-Workshop
+      - pwd
+
+  post_build:
+    commands:
+      - echo  "Enter post build phase 02."
+
+artifacts:
+  base-directory: ./QA-MeetUp-API-Workshop/
+  files:
+    - '**/*'
