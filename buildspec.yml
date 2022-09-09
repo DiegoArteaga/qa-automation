@@ -18,6 +18,6 @@ phases:
       - echo  "Enter post build phase 02."
 
 artifacts:
-  base-directory: ./restful-bookder/
+  base-directory: ./restful-booker/
   files:
     - '**/*'
