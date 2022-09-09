@@ -37,7 +37,7 @@ var visitor = ua('UA-118712228-2', uuidv4());
  * @apiDescription A simple health check endpoint to confirm whether the API is up and running.
  *
  * @apiExample Ping server:
- * curl -i https://restful-booker.herokuapp.com/ping
+ * curl -i http://restful-booker-dev.us-west-1.elasticbeanstalk.com/ping
  * 
  * @apiSuccess {String} OK Default HTTP 201 response
  * 
@@ -46,7 +46,7 @@ var visitor = ua('UA-118712228-2', uuidv4());
  */
 router.get('/ping', function(req, res, next) {
   visitor.set('uid', uuidv4());
-  visitor.pageview('/ping', 'https://restful-booker.herokuapp.com/', "GET /Ping").send();
+  visitor.pageview('/ping', 'http://restful-booker-dev.us-west-1.elasticbeanstalk.com/', "GET /Ping").send();
 
   res.sendStatus(201);
 });
@@ -64,13 +64,13 @@ router.get('/ping', function(req, res, next) {
  * @apiParam {date}   [checkout]  Return bookings that have a checkout date greater than or equal to the set checkout date. Format must be CCYY-MM-DD
  * 
  * @apiExample Example 1 (All IDs):
- * curl -i https://restful-booker.herokuapp.com/booking
+ * curl -i http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking
  * 
  * @apiExample Example 2 (Filter by name):
- * curl -i https://restful-booker.herokuapp.com/booking?firstname=sally&lastname=brown
+ * curl -i http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking?firstname=sally&lastname=brown
  * 
  * @apiExample Example 3 (Filter by checkin/checkout date):
- * curl -i https://restful-booker.herokuapp.com/booking?checkin=2014-03-13&checkout=2014-05-21
+ * curl -i http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking?checkin=2014-03-13&checkout=2014-05-21
  * 
  * @apiSuccess {object[]} object Array of objects that contain unique booking IDs
  * @apiSuccess {number} object.bookingid ID of a specific booking that matches search criteria
@@ -95,7 +95,7 @@ router.get('/ping', function(req, res, next) {
 */
 router.get('/booking', function(req, res, next) {
   visitor.set('uid', uuidv4());
-  visitor.pageview('/booking', 'https://restful-booker.herokuapp.com/', "GET /booking").send();
+  visitor.pageview('/booking', 'http://restful-booker-dev.us-west-1.elasticbeanstalk.com/', "GET /booking").send();
 
   var query = {};
 
@@ -138,7 +138,7 @@ router.get('/booking', function(req, res, next) {
  * @apiHeader {string} Accept=application/json Sets what format the response body is returned in. Can be application/json or application/xml
  * 
  * @apiExample Example 1 (Get booking):
- * curl -i https://restful-booker.herokuapp.com/booking/1
+ * curl -i http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1
  * 
  * @apiSuccess {String}  firstname             Firstname for the guest who made the booking
  * @apiSuccess {String}  lastname              Lastname for the guest who made the booking
@@ -185,7 +185,7 @@ router.get('/booking', function(req, res, next) {
  */
 router.get('/booking/:id',function(req, res, next){
   visitor.set('uid', uuidv4());
-  visitor.pageview('/booking/:id', 'https://restful-booker.herokuapp.com/', "GET /booking/:id").send();
+  visitor.pageview('/booking/:id', 'http://restful-booker-dev.us-west-1.elasticbeanstalk.com/', "GET /booking/:id").send();
 
   Booking.get(req.params.id, function(err, record){
     if(record){
@@ -222,7 +222,7 @@ router.get('/booking/:id',function(req, res, next){
  * 
  * @apiExample JSON example usage:
  * curl -X POST \
-  https://restful-booker.herokuapp.com/booking \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking \
   -H 'Content-Type: application/json' \
   -d '{
     "firstname" : "Jim",
@@ -237,7 +237,7 @@ router.get('/booking/:id',function(req, res, next){
 }'
  * @apiExample XML example usage:
  * curl -X POST \
-  https://restful-booker.herokuapp.com/booking \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking \
   -H 'Content-Type: text/xml' \
   -d '<booking>
     <firstname>Jim</firstname>
@@ -253,7 +253,7 @@ router.get('/booking/:id',function(req, res, next){
  *
  * @apiExample URLencoded example usage:
  * curl -X POST \
-  https://restful-booker.herokuapp.com/booking \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'firstname=Jim&lastname=Brown&totalprice=111&depositpaid=true&bookingdates%5Bcheckin%5D=2018-01-01&bookingdates%5Bcheckout%5D=2018-01-02'
  * 
@@ -310,7 +310,7 @@ router.get('/booking/:id',function(req, res, next){
  */
 router.post('/booking', function(req, res, next) {
   visitor.set('uid', uuidv4());
-  visitor.pageview('/booking', 'https://restful-booker.herokuapp.com/', "POST /booking").send();
+  visitor.pageview('/booking', 'http://restful-booker-dev.us-west-1.elasticbeanstalk.com/', "POST /booking").send();
 
   newBooking = req.body;
   if(req.headers['content-type'] === 'text/xml') newBooking = newBooking.booking;
@@ -360,7 +360,7 @@ router.post('/booking', function(req, res, next) {
  * 
  * @apiExample JSON example usage:
  * curl -X PUT \
-  https://restful-booker.herokuapp.com/booking/1 \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1 \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Cookie: token=abc123' \
@@ -378,7 +378,7 @@ router.post('/booking', function(req, res, next) {
  *
  * @apiExample XML example usage:
  * curl -X PUT \
-  https://restful-booker.herokuapp.com/booking/1 \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1 \
   -H 'Content-Type: text/xml' \
   -H 'Accept: application/xml' \
   -H 'Authorisation: Basic YWRtaW46cGFzc3dvcmQxMjM=' \
@@ -396,7 +396,7 @@ router.post('/booking', function(req, res, next) {
  *
  * @apiExample URLencoded example usage:
  * curl -X PUT \
-  https://restful-booker.herokuapp.com/booking/1 \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1 \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -H 'Accept: application/x-www-form-urlencoded' \
   -H 'Authorisation: Basic YWRtaW46cGFzc3dvcmQxMjM=' \
@@ -447,7 +447,7 @@ router.post('/booking', function(req, res, next) {
  */
 router.put('/booking/:id', function(req, res, next) {
   visitor.set('uid', uuidv4());
-  visitor.pageview('/booking/:id', 'https://restful-booker.herokuapp.com/', "PUT /booking/:id").send();
+  visitor.pageview('/booking/:id', 'http://restful-booker-dev.us-west-1.elasticbeanstalk.com/', "PUT /booking/:id").send();
 
   if(globalLogins[req.cookies.token] || req.headers.authorization == 'Basic YWRtaW46cGFzc3dvcmQxMjM='){
     updatedBooking = req.body;
@@ -503,7 +503,7 @@ router.put('/booking/:id', function(req, res, next) {
  * 
  * @apiExample JSON example usage:
  * curl -X PUT \
-  https://restful-booker.herokuapp.com/booking/1 \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1 \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Cookie: token=abc123' \
@@ -514,7 +514,7 @@ router.put('/booking/:id', function(req, res, next) {
  *
  * @apiExample XML example usage:
  * curl -X PUT \
-  https://restful-booker.herokuapp.com/booking/1 \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1 \
   -H 'Content-Type: text/xml' \
   -H 'Accept: application/xml' \
   -H 'Authorisation: Basic YWRtaW46cGFzc3dvcmQxMjM=' \
@@ -525,7 +525,7 @@ router.put('/booking/:id', function(req, res, next) {
  *
  * @apiExample URLencoded example usage:
  * curl -X PUT \
-  https://restful-booker.herokuapp.com/booking/1 \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1 \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -H 'Accept: application/x-www-form-urlencoded' \
   -H 'Authorisation: Basic YWRtaW46cGFzc3dvcmQxMjM=' \
@@ -576,7 +576,7 @@ router.put('/booking/:id', function(req, res, next) {
  */
 router.patch('/booking/:id', function(req, res) {
   visitor.set('uid', uuidv4());
-  visitor.pageview('/booking/:id', 'https://restful-booker.herokuapp.com/', "DELETE /booking/:id").send();
+  visitor.pageview('/booking/:id', 'http://restful-booker-dev.us-west-1.elasticbeanstalk.com/', "DELETE /booking/:id").send();
 
   if(globalLogins[req.cookies.token] || req.headers.authorization == 'Basic YWRtaW46cGFzc3dvcmQxMjM='){
     updatedBooking = req.body;
@@ -617,13 +617,13 @@ router.patch('/booking/:id', function(req, res) {
  * 
  * @apiExample Example 1 (Cookie):
  * curl -X DELETE \
-  https://restful-booker.herokuapp.com/booking/1 \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1 \
   -H 'Content-Type: application/json' \
   -H 'Cookie: token=abc123'
  *
  * @apiExample Example 2 (Basic auth):
  * curl -X DELETE \
-  https://restful-booker.herokuapp.com/booking/1 \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/booking/1 \
   -H 'Content-Type: application/json' \
   -H 'Authorisation: Basic YWRtaW46cGFzc3dvcmQxMjM='
  * 
@@ -634,7 +634,7 @@ router.patch('/booking/:id', function(req, res) {
 */
 router.delete('/booking/:id', function(req, res, next) {
   visitor.set('uid', uuidv4());
-  visitor.pageview('/booking/:id', 'https://restful-booker.herokuapp.com/', "DELETE /booking/:id").send();
+  visitor.pageview('/booking/:id', 'http://restful-booker-dev.us-west-1.elasticbeanstalk.com/', "DELETE /booking/:id").send();
 
   if(globalLogins[req.cookies.token] || req.headers.authorization == 'Basic YWRtaW46cGFzc3dvcmQxMjM='){
     Booking.get(req.params.id, function(err, record){
@@ -665,7 +665,7 @@ router.delete('/booking/:id', function(req, res, next) {
  * 
  * @apiExample Example 1:
  * curl -X POST \
-  https://restful-booker.herokuapp.com/auth \
+  http://restful-booker-dev.us-west-1.elasticbeanstalk.com/auth \
   -H 'Content-Type: application/json' \
   -d '{
     "username" : "admin",
@@ -682,7 +682,7 @@ router.delete('/booking/:id', function(req, res, next) {
  */
 router.post('/auth', function(req, res, next){
   visitor.set('uid', uuidv4());
-  visitor.pageview('/auth', 'https://restful-booker.herokuapp.com/', "POST /auth").send();
+  visitor.pageview('/auth', 'http://restful-booker-dev.us-west-1.elasticbeanstalk.com/', "POST /auth").send();
 
   if(req.body.username === "admin" && req.body.password === "password123"){
     var token = crypto.randomBytes(Math.ceil(15/2))

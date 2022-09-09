@@ -10,7 +10,7 @@ phases:
     commands:
       - echo "Enter build phase 01"
       - echo $CODEBUILD_SRC_DIR
-      - ls $CODEBUILD_SRC_DIR/restful-booker
+      - cd $CODEBUILD_SRC_DIR/restful-booker
       - pwd
       - npm install
   post_build:
