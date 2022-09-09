@@ -10,7 +10,7 @@ phases:
     commands:
       - echo "Enter build phase test"
       - echo $CODEBUILD_SRC_DIR
-      - ls $CODEBUILD_SRC_DIR/QA-MeetUp-API-Workshop
+      - cd $CODEBUILD_SRC_DIR/QA-MeetUp-API-Workshop
       - chmod -R 755 .
       - mvn clean test
       - echo Build completed on `date`
