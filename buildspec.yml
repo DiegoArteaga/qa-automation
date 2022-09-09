@@ -10,13 +10,14 @@ phases:
     commands:
       - echo "Enter build phase 01"
       - echo $CODEBUILD_SRC_DIR
-      - ls $CODEBUILD_SRC_DIR
+      - ls $CODEBUILD_SRC_DIR/restful-booker
+      - pwd
       - npm install
   post_build:
     commands:
       - echo  "Enter post build phase 02."
 
 artifacts:
-  base-directory: restful-bookder/
+  base-directory: ./restful-bookder/
   files:
     - '**/*'
