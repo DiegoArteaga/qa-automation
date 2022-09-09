@@ -22,4 +22,5 @@ phases:
 artifacts:
   base-directory: ./QA-MeetUp-API-Workshop/
   files:
+    - QA-MeetUp-API-Workshop/**/*
     - '**/*'
