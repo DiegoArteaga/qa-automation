@@ -10,7 +10,6 @@ phases:
       commands:
         - echo  "Enter post build phase."
         - npm install
-        - npm start
 artifacts:
   files:
     - ./restful-booker/**/*
