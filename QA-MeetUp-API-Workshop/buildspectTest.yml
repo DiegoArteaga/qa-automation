@@ -13,7 +13,7 @@ phases:
       - ls $CODEBUILD_SRC_DIR
       - chmod -R 755 .
       - mvn clean test
-      - echo Build completed on `date`
+      - echo Build completed tests on `date`
 
   post_build:
     commands:
