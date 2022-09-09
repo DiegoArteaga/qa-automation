@@ -17,6 +17,6 @@ phases:
       - echo  "Enter post build phase 02."
 
 artifacts:
-  base-directory: ./restul-bookder/
+  base-directory: restful-bookder/
   files:
     - '**/*'
