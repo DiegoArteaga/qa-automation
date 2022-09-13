@@ -23,4 +23,8 @@ artifacts:
     - '**/*'
   base-directory: QA-MeetUp-API-Workshop
 
+SurefireReports:
+  files:
+    - '**/*'
+  base-directory: 'QA-MeetUp-API-Workshop/target/surefire-reports'
 
