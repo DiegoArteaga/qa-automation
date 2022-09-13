@@ -1,4 +1,5 @@
 import entities.Auth;
+import helpers.DataGenerator;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -17,7 +18,7 @@ public class DeleteBookingEndpointTest {
     }
 
     @Test
-    public void deleteBooking() {
+    public void userCanDeleteABooking() {
         String username = "admin";
         String password = "password123";
         Auth auth = new Auth(username,password);
@@ -26,7 +27,6 @@ public class DeleteBookingEndpointTest {
         List<Integer> bookingList = api.getBookingIds();
 
         int random = (int) (Math.random() * (bookingList.size())+1);
-        System.out.println("This is the random number: " + random);
 
         Response response = api.deleteBooking(token, bookingList.get(random));
 
@@ -38,4 +38,17 @@ public class DeleteBookingEndpointTest {
         Assert.assertTrue(updatedList.size() < bookingList.size());
     }
 
+
+    @Test
+    public void userCannotDeleteABookingWithInvalidToken() {
+        String token = DataGenerator.createRandomString();
+
+        List<Integer> bookingList = api.getBookingIds();
+
+        int random = (int) (Math.random() * (bookingList.size())+1);
+
+        Response response = api.deleteBooking(token, bookingList.get(random));
+        response.then().log().all();
+        Assert.assertEquals("The status code is not the expected one", response.statusCode(), 403);
+    }
 }

@@ -26,19 +26,6 @@ public class HttpMessageSender {
         return response;
     }
 
-    public Response postRequestToEndpoint(String msg, String endpoint) {
-        String requestURL = url + endpoint;
-        Response response =
-                given().
-                        contentType(ContentType.JSON).
-                        body(msg).log().all().
-                        when().
-                        post(requestURL).
-                        andReturn();
-
-        return response;
-    }
-
     public Response postRequestToEndpoint(Booking booking, String endpoint) {
         String requestURL = url + endpoint;
         return

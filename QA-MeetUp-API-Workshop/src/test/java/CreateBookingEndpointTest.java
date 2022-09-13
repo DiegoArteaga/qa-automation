@@ -17,18 +17,17 @@ public class CreateBookingEndpointTest {
     }
 
     @Test
-    public void createBooking() {
+    public void userCanCreateABooking() {
         Booking booking = DataGenerator.createRandomBooking();
         Response response = api.createBooking(booking);
 
         Assert.assertEquals("The status code is different than 200Ok", response.statusCode(), 200);
         String name = response.path("booking.firstname");
         Assert.assertEquals("Names do not match", name, booking.getFirstname());
-
     }
 
     @Test
-    public void createBookingImprovedTest() {
+    public void userCanCreateABookingImprovedTest() {
         List<Integer> bookingsInList = api.getBookingIds();
         Booking booking = DataGenerator.createRandomBooking();
         Response response = api.createBooking(booking);

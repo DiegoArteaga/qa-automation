@@ -21,27 +21,21 @@ public class GetBookingEndpointTest {
     }
 
     @Test
-    public void getBookingFirstTest() {
+    public void userCanGetBookingWithValidID() {
         get("https://restful-booker.herokuapp.com/booking/"+bookingId).then().statusCode(200);
     }
 
     @Test
-    public void getBookingOtherTest() {
+    public void userCannotGetBookingWithInvalidID() {
+        get("https://restful-booker.herokuapp.com/booking/"+0).then().statusCode(404);
+    }
+
+    @Test
+    public void dataOfBookingIsCorrect() {
         String response = get("https://restful-booker.herokuapp.com/booking/"+bookingId).asString();
         String firstName = from(response).getString("firstname");
         String lastName = from(response).getString("lastname");
         Assert.assertNotNull(firstName);
         Assert.assertNotNull(lastName);
-
-    }
-
-    @Test
-    public void getBookingById() {
-        Booking booking = api.getBookingById(bookingId);
-
-        Assert.assertNotNull("Booking is null",booking);
-        Assert.assertNotNull(booking.getFirstname());
-        Assert.assertNotNull(booking.getLastname());
-        Assert.assertTrue(booking.getTotalprice()>0);
     }
 }
