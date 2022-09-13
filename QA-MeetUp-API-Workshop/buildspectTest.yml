@@ -20,7 +20,7 @@ phases:
       - echo  "Enter post build phase 02."
 artifacts:
   files:
-    - '**/*'
+    - './**/*'
 reports:
   SurefireReports:
   files:
