@@ -20,5 +20,7 @@ phases:
       - echo  "Enter post build phase 02."
 artifacts:
   files:
-    - 'QA-MeetUp-API-Workshop/**/*'
+    - '**/*'
+  base-directory: QA-MeetUp-API-Workshop
+
 
