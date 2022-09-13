@@ -21,10 +21,4 @@ phases:
 artifacts:
   files:
     - 'QA-MeetUp-API-Workshop/**/*'
-reports:
-  SurefireReports:
-  files:
-    - '**/*'
-  base-directory: 'target/surefire-reports'
-
 
