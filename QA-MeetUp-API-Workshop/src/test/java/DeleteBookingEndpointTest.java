@@ -51,17 +51,4 @@ public class DeleteBookingEndpointTest {
         response.then().log().all();
         Assert.assertEquals("The status code is not the expected one", response.statusCode(), 403);
     }
-
-    @Test
-    public void userCannotDeleteABookingWithInvalidTokenV1() {
-        // given
-        String token = DataGenerator.createRandomString();
-        List<Integer> bookingList = api.getBookingIds();
-        int random = (int) (Math.random() * (bookingList.size())+1);
-        // when
-        Response response = api.deleteBooking(token, bookingList.get(random));
-        response.then().log().all();
-        //then
-        Assert.assertEquals("The status code is not the expected one", response.statusCode(), 403);
-    }
 }
