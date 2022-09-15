@@ -61,4 +61,8 @@ public class RestfulBookerAPI {
     public Response deleteBooking(String token, int index) {
         return messageSender.deleteRequestToEndpoint(token, "/booking/"+index);
     }
+
+    public Response updateBookingWithPatch(Booking booking, String token, int index){
+        return messageSender.patchRequestToEndpoint(booking,token,"/booking/"+index);
+    }
 }

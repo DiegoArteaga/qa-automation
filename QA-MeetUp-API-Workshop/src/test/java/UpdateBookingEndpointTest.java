@@ -82,4 +82,32 @@ public class UpdateBookingEndpointTest {
         Assert.assertEquals(405, response.getStatusCode());
     }
 
+
+
+    @Test
+    public void userCanUpdateABookingThroughPatch() {
+
+        //Given the user has a valid token
+        String username = "admin";
+        String password = "password123";
+        Auth auth = new Auth(username,password);
+        String token = api.auth(auth);
+        //And a valid booking that was recently modified
+        List<Integer> bookingList = api.getBookingIds();
+        int random = (int) (Math.random() * (bookingList.size()) + 1);
+        Booking booking = api.getBookingById(random);
+        booking.setFirstname(DataGenerator.createRandomString());
+        booking.setLastname(DataGenerator.createRandomString());
+
+        //When I send a request to update the booking using the new PATCH endpoint
+        Response response = api.updateBookingWithPatch(booking, token, bookingList.get(random));
+        response.then().log().all();
+
+        //Then the response code is 200 OK
+        Assert.assertEquals(200, response.getStatusCode());
+        //And the values in the response have to match the values of the booking that were modified
+        Assert.assertEquals("Names do not match", response.then().extract().path("firstname"), booking.getFirstname());
+        Assert.assertEquals("LastNames do not match", response.then().extract().path("lastname"), booking.getLastname());
+    }
+
 }

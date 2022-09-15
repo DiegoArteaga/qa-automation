@@ -70,4 +70,18 @@ public class HttpMessageSender {
                         delete(requestURL).
                         andReturn();
     }
+
+    public Response patchRequestToEndpoint(Booking booking, String token, String endpoint){
+        String requestURL = url + endpoint;
+        return
+                given().
+                        body(booking).
+                        contentType(ContentType.JSON).
+                        cookie("token",token).log().all().
+                        when().
+                        patch(requestURL).
+                        andReturn();
+    }
+
+
 }
